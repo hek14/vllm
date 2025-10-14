@@ -266,7 +266,8 @@ class KVCacheManager:
             new_computed_blocks=new_computed_block_list,
         )
 
-        if num_blocks_to_allocate > self.block_pool.get_num_free_blocks():
+        debug = False
+        if debug or num_blocks_to_allocate > self.block_pool.get_num_free_blocks():
             # Cannot allocate new blocks
             return None
 
