@@ -235,11 +235,7 @@ class KVCacheManager:
         if num_new_tokens == 0:
             raise ValueError("num_new_tokens must be greater than 0")
         if num_slots_sparsed != INVALID_SLOT:
-            return get_ucm_sparse().allocate_slots(request,
-                                                   num_slots_sparsed,
-                                                   self.coordinator,
-                                                   self.block_pool,
-                                                   self.kv_cache_config.kv_cache_groups)
+            return get_ucm_sparse().allocate_slots(self, request, num_slots_sparsed)
 
         if new_computed_blocks is not None:
             new_computed_block_list = new_computed_blocks.blocks
