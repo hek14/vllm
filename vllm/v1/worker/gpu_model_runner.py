@@ -485,8 +485,9 @@ class GPUModelRunner(LoRAModelRunnerMixin):
                 # The request was rescheduled after a KV load failure. Clear
                 # the last sampled tokens and rewind the generator state
                 len_output_token_ids = len(req_state.output_token_ids)
-                del req_state.output_token_ids[req_state.
-                                               len_last_output_token_ids:]
+                # FUCK, don't work for preemption
+                # del req_state.output_token_ids[req_state.
+                #                                len_last_output_token_ids:]
                 if req_state.generator:
                     req_state.generator.set_offset(
                         req_state.last_generator_offset)
